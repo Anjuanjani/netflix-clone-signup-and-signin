@@ -1,34 +1,31 @@
-import React, { Component } from 'react';
-import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
-import SignUpForm from './pages/SignUpForm';
-import SignInForm from './pages/SignInForm';
-import ForgotPassword from './pages/ForgotPassword';
-import SignUpForm_Student from './pages/SignUpForm_Student';
+import React from "react";
+import "./App.css";
+import Row from "./Row";
+import requests from "./requests";
+import Banner from "./Banner";
+import Nav from "./Nav";
 
-
-
-
-import './App.css';
-
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div className="app">
-          <div className="Right_Side">
-          
-            <Route path="/sign-up" component={SignUpForm}/>
-            <Route path="/" exact component={SignInForm}/>
-            <Route path="/forgot_password" component={ForgotPassword} />
-            
-            <Route path = "/sign-up-student" component = {SignUpForm_Student}/>
-            
-          </div>
-
-        </div>
-      </Router>
-    );
-  }
+function App() {
+  return (
+    <div className="app">
+      <Nav />
+      <div className="temp">
+        <Banner />
+        <Row
+          title="NETFLIX ORIGINALS"
+          fetchUrl={requests.fetchNetflixOriginals}
+          isLargeRow={true}
+        />
+      </div>
+      <Row title="Trending Now" fetchUrl={requests.fetchTrending} />
+      <Row title="Top Rated" fetchUrl={requests.fetchTopRated} />
+      <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} />
+      <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} />
+      <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} />
+      <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} />
+      <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} />
+    </div>
+  );
 }
 
 export default App;
